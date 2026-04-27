@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# react-start-practice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Используемые технологии
+* HTML
+* JS
+* CSS
+* React
 
-## Available Scripts
+### Вопросы к заданию
 
-In the project directory, you can run:
+**Почему в JSX используется className, а не class?.**  
+Потому что class - это зарезервированное слово в js.  
 
-### `npm start`
+**Чем props отличаются от state?**  
+Props передается компоненту извне и не изменяется внутри компонента, а state управляется внутри компонента, может меняться.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Почему props нельзя изменять внутри компонента?**  
+Нельзя изменять, так как нарушится однонаправленный поток данных. Props могут изменяться только в родительском компоненте, делая рендеринг компонентов предсказуемым. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Почему state нужно изменять через setter-функцию, а не прямым присваиванием?**  
+Принцип работы реакт, обеспечивающий реактивность и правильную синхронизацию данных с пользовательским интерфейсом (UI). При изменении state напрямую реакт не видит изменения state и не происходит ререндеринга компонента. 
 
-### `npm test`
+**Что такое управляемый компонент и почему он важен для форм?**  
+Элемент формы, значение которого хранится в state, а не в дом и управляется через обработчик событий. Необходим для обеспечения единого источника данных, мгновенной валидации, динамического управления. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Как Вы понимаете формулу UI = f(state)?**  
+Пользовательский интерфейс является чистой функцией от текущего состояния приложения. То есть внешний вид и поведение интерфейса будет определяться состоянием, переданным в функцию (логику компонента или приложения). 
+Чистая функция означает, что при одинаковых вводных данных мы получаем одинаковый результат без побочных эффектов. 
 
-### `npm run build`
+**Зачем компонентам в React нужен key при рендеринге списка через map()?**  
+При рендеринге списков, например, карточек товара, для каждого элемента списка необходимо добавить уникальный ключ идентификатор. Это поможет оптимизировать рендеринг списков. При именении состояния ключи помогают алгоритмам сравнения нового виртуального DOM со 
+старым, в частности определить какой элемент обновился и вместо обновления всего списка обновить только изменившийся элемент. Тем самым улучшив производительность страницы.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Разбиение на компоненты**
+Выделил ProductItem компонент, так как используем его несколько раз для рендеринга элементов листа, так же выделил ProductList компонент, чтобы инкапсулировать логику отображения списка продуктов и не засорять App компонент. Button компонент - кнопка которая будет использоваться в нескольких местах на странице. ControlledInput - можно использовать в регистрационной форме.
